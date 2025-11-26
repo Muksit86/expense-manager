@@ -51,7 +51,8 @@ export const handleRegistration = async (req, res) => {
       
       res.cookie('token', token, {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: "none"
       })
       return res.status(201).json({ status: "success", code: 201, message: "User registered successfully", token: token, username: username});
 
