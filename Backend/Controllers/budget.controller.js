@@ -21,7 +21,7 @@ export const removeBudget = async (req, res) => {
 
         const budget = await Budget.findByIdAndDelete(budgetId);
         const expense = await Expense.findByIdAndDelete(budgetId)
-        console.log(budget, expense)
+        
         return res.status(200).json({ budget:budget, expense:expense, message: "Remove Budget Controller", budgetId });
     } catch (error) {
         res.status(500).json({ status: "failed", code:500, message:"Internal server error", error:error.message || "An unexpected error occurred"});

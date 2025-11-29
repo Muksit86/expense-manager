@@ -39,7 +39,6 @@ export async function dashboardLoader() {
 export async function dashboardAction({ request }) {
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
-  console.log(values)
 
   if (_action === "createBudget") {
     try {

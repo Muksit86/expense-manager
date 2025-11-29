@@ -92,7 +92,6 @@ export const createBudget = async ({ name, amount }) => {
     }
   )
   
-  console.log("Data: ", result.data)
   return result.data
 };
 
