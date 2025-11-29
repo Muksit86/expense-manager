@@ -12,15 +12,9 @@ import {
   getAllMatchingItems,
 } from "../helpers";
 
-const getBudget = async () =>{
-  const budget = await fetchBudget()
-  return budget;
-}
 
 const ExpenseItem = ({ expense, showBudget }) => {
   const fetcher = useFetcher();
-
-  const budget = getBudget()
 
   return (
     <>
@@ -30,10 +24,10 @@ const ExpenseItem = ({ expense, showBudget }) => {
       {showBudget && (
         <td>
           <Link
-            to={`/budget/${budget._id}`}
-            style={{ "--accent": budget.color }}
+            to={`/budget/${expense.budgetId}`}
+            //style={{ "--accent": budget.color }}
           >
-            {budget.name}
+            {expense.budgetTitle}
           </Link>{" "}
         </td>
       )}

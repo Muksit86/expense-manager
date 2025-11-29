@@ -1,11 +1,10 @@
 // rrd imports
-import { Link, Navigate, redirect, useLoaderData } from "react-router-dom";
+import { Link, Navigate, useLoaderData } from "react-router-dom";
 
 // library imports
 import toast from "react-hot-toast";
 
 // components
-import Intro from "../components/Intro";
 import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseFrom from "../components/AddExpenseFrom";
 import BudgetItem from "../components/BudgetItem";
@@ -15,24 +14,14 @@ import Table from "../components/Table";
 import {
   createBudget,
   createExpense,
-  deleteItem,
-  fetchBudget,
-  fetchData,
-  fetchExpense,
-  fetchUsername,
-  waait,
+  fetchDetails
 } from "../helpers";
-import { registerAction } from "../actions/registerAction";
-import { useEffect, useState } from "react";
 import { deleteExpense } from "../actions/deleteExpense";
 
 // loader
 export async function dashboardLoader() {
-  const username = await fetchUsername()
-  const budgets = await fetchBudget();
-  const expenses = await fetchExpense();
-
-  return { username, budgets, expenses };
+  const {user:username, budgets, expenses} = await fetchDetails()
+  return { username, budgets, expenses};
 }
 
 // action
@@ -46,7 +35,8 @@ export async function dashboardAction({ request }) {
         name: values.newBudget,
         amount: values.newBudgetAmount,
       });
-      return toast.success("Budget Created!");
+      toast.success("Budget Created!");
+      return null
     } catch (e) {
       throw new Error("There was a problem creating your budget.");
     }

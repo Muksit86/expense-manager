@@ -1,18 +1,22 @@
 import Expense from "../Models/expense.model.js";
+import Budget from "../Models/budget.model.js";
 
 export const handleCreateExpense =  async (req, res) => {
     try {
         const userId = req.user.id;
-        const { budgetId, expenseTitle, expenseAmount, budgetTitle } = req.body;
+        const { budgetId, expenseTitle, expenseAmount } = req.body;
+        const budget = await Budget.findById(budgetId);
+
         const expense = await Expense.create({
             userId,
             budgetId,
             expenseTitle,
             expenseAmount,
-            budgetTitle
+            budgetTitle:budget.budgetTitle
         });
         expense.save();
-        
+        console.log(expense)
+
         return res.status(201).json({
             success: true,
             message: "Expense created successfully",

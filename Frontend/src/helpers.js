@@ -21,7 +21,7 @@ export const fetchDetails = async (key) => {
       validateStatus: () => true // optional
     })
 
-    return result
+    return result.data
 }
 
 export const fetchExpense = async () => {

@@ -68,8 +68,6 @@ const AddExpenseFrom = ({ budgets }) => {
           </div>
         </div>
         <div className="grid-xs" hidden={budgets.length === 1}>
-          <input type="hidden" name="newExpenseBudgetTitle" 
-          value={budgets.length === 1? budgets[0].budgetTitle: budgets.find(b => b._id === selectedBudgetId)?.budgetTitle}/>
           <label htmlFor="newExpenseBudget">Budget Category</label>
           <select name="newExpenseBudget" id={budgets._id} required>
             {budgets
